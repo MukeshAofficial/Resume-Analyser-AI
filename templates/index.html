@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">ResumeAI</a>
+            <div class="space-x-4">
+                <a href="#features" class="hover:text-blue-400">Features</a>
+                <a href="#faq" class="hover:text-blue-400">FAQ</a>
+                <a href="#" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="text-center">
+            <h1 class="text-5xl font-bold mb-6">Optimize Your Resume with AI</h1>
+            <p class="text-xl text-gray-400 mb-8">Get instant feedback and improve your chances of landing your dream job</p>
+            <a href="/analyze" class="bg-blue-600 px-8 py-3 rounded-lg text-lg hover:bg-blue-700 transition">
+                Try Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- AI Analysis Card -->
+            <div class="bg-gray-800 p-6 rounded-lg hover:transform hover:scale-105 transition cursor-pointer" onclick="window.location.href='/analyze'">
+                <div class="text-blue-500 text-4xl mb-4">🤖</div>
+                <h3 class="text-xl font-bold mb-2">AI-Powered Analysis</h3>
+                <p class="text-gray-400">Get detailed feedback on your resume with our advanced AI technology</p>
+            </div>
+            
+            <!-- Score Card -->
+            <div class="bg-gray-800 p-6 rounded-lg hover:transform hover:scale-105 transition">
+                <div class="text-blue-500 text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-bold mb-2">Resume Score</h3>
+                <p class="text-gray-400">Receive a comprehensive score and detailed breakdown of your resume</p>
+            </div>
+            
+            <!-- Improvement Card -->
+            <div class="bg-gray-800 p-6 rounded-lg hover:transform hover:scale-105 transition">
+                <div class="text-blue-500 text-4xl mb-4">📈</div>
+                <h3 class="text-xl font-bold mb-2">Improvement Tips</h3>
+                <p class="text-gray-400">Get actionable suggestions to enhance your resume</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq" class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4 max-w-2xl mx-auto">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-2">How does the AI analysis work?</h3>
+                <p class="text-gray-400">Our AI analyzes your resume using advanced natural language processing to provide detailed feedback, scores, and suggestions for improvement.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-2">What file formats are supported?</h3>
+                <p class="text-gray-400">Currently, we support PDF files only to ensure the most accurate analysis of your resume.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-2">Is my data secure?</h3>
+                <p class="text-gray-400">Yes, we take privacy seriously. Your resume data is encrypted and never stored on our servers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 ResumeAI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

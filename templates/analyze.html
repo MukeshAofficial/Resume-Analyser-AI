@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">ResumeAI</a>
+            <a href="/" class="hover:text-blue-400">Home</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold mb-8 text-center">Upload Your Resume</h1>
+            
+            <!-- Upload Form -->
+            <form id="uploadForm" class="mb-8">
+                <div class="flex flex-col items-center p-8 border-2 border-dashed border-gray-600 rounded-lg">
+                    <input type="file" id="resume" name="resume" accept=".pdf" class="hidden">
+                    <label for="resume" class="cursor-pointer bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700 transition mb-4">
+                        Choose PDF File
+                    </label>
+                    <p id="fileName" class="text-gray-400"></p>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700 transition mt-4">
+                    Analyze Resume
+                </button>
+            </form>
+
+            <!-- Loading State -->
+            <div id="loading" class="hidden text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                <p>Analyzing your resume...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="hidden space-y-6 bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold">Analysis Results</h2>
+                <div id="analysisContent" class="whitespace-pre-line"></div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error" class="hidden text-red-500 text-center p-4 bg-red-900/20 rounded-lg"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('resume');
+        const fileName = document.getElementById('fileName');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const analysisContent = document.getElementById('analysisContent');
+        const errorDiv = document.getElementById('error');
+
+        fileInput.addEventListener('change', (e) => {
+            fileName.textContent = e.target.files[0]?.name || '';
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showError('Please select a file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('resume', file);
+
+            // Reset states
+            results.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+            loading.classList.remove('hidden');
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'An error occurred');
+                }
+
+                // Display results
+                analysisContent.textContent = data.analysis;
+                results.classList.remove('hidden');
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                loading.classList.add('hidden');
+            }
+        });
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
